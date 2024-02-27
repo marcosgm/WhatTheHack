@@ -85,7 +85,7 @@ This one possible Cloud Solution Architecture classifies under the **Application
 - Visual Studio Code (although Visual Studio 2022 works perfectly fine too)
 - Azure CLI
 - Azure Functions Core Tools
-- .NET 6 SDK
+- .NET 8 SDK
 - Any extensions required by your language of choice
 
 *To setup Azure Functions on Visual studio Code, [follow this guide.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp)*

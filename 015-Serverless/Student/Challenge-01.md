@@ -18,7 +18,7 @@ Set up your *local* environment:
 - Azure CLI
 - Azure Functions Core Tools
 - [Node.js 18+](https://nodejs.org/en/download/): Install latest long-term support (LTS) runtime environment for local workstation development. A package manager is also required (NPM, installed by default with Node.js) The Azure SDK generally requires a minimum version of Node.js of 18.x. Azure hosting services, such as Azure App service, provides runtimes with more recent versions of Node.js. If you target a minimum of 18.x for local and remove development, your code should run successfully.
-- .NET 6 SDK
+- .NET 8 SDK
 - [VS Code Todo Tree Extension](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
 - Any extensions required by your language of choice
 
