@@ -4,9 +4,9 @@
 
 ## Notes & Guidance
 
-Integration has changed in the new functions portal.  Might have to go to the old portal to add the integration.
+Follow the Student Guide for the VSCode procedure (recommended). If you want to try the Portal rooute, be adviced that the Integration UI has changed in the new functions portal.  Might have to go to the old portal to add the integration.
 
-## Step by Step Instructions
+## Step by Step Instructions Using the Portal
 
 ### Help references
 
@@ -38,19 +38,27 @@ In this task, you will create a new Node.js function triggered by Event Grid and
 6)  Replace the code in the new SavePlateData function with the following:
 
 ```javascript
-module.exports = function(context, eventGridEvent) {
-  context.log(typeof eventGridEvent);
-  context.log(eventGridEvent);
+const { app, output } = require('@azure/functions'); 
 
-  context.bindings.outputDocument = {
-    fileName: eventGridEvent.data['fileName'],
-    licensePlateText: eventGridEvent.data['licensePlateText'],
-    timeStamp: eventGridEvent.data['timeStamp'],
-    exported: false
-  };
+const cosmosOutput = output.cosmosDB({ 
+    databaseName: 'LicensePlates', 
+    collectionName: 'NeedsManualReview', 
+    createIfNotExists: true, 
+    connectionStringSetting: 'cosmosDBConnectionString', 
+}); 
 
-  context.done();
-};
+app.eventGrid('queuePlateForManualCheckup', { 
+    return: cosmosOutput, 
+    handler: (event, context) => { 
+        context.log('Event grid function processed event:', event); 
+        return { 
+            fileName: event.data['fileName'], 
+            licensePlateText: '', 
+            timeStamp: event.data['timeStamp'], 
+            resolved: false 
+        };
+    },
+});
 ```
 
 8.  Select **Save**.
